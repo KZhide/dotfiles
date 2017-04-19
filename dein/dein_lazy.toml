@@ -1,0 +1,85 @@
+[[plugins]]
+repo = 'Shougo/unite.vim'
+hook_add = '''
+  nnoremap <silent> ,b :<C-u>Unite buffer<CR>
+  nnoremap <silent> ,f :<C-u>Unite file -buffer-name=files<CR>
+  nnoremap <silent> ,r :<C-u>Unite register -buffer-name=register<CR>
+  nnoremap <silent> ,m :<C-u>Unite file_mru<CR>
+  let g:unite_enable_start_insert = 1
+'''
+
+[[plugins]] # 補完
+repo = 'Shougo/deoplete.nvim'
+if = 'has("nvim")'
+on_i = 1
+hook_add = '''
+  " <TAB> で補完を選択
+  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<tab>"
+'''
+hook_source = '''
+  let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'junegunn/fzf'
+if = 'executable("fzf")'
+on_cmd = ['FZF','fzf#run']
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+on_path = '.*'
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_path = '.*'
+on_i = 1
+
+[[plugins]]
+repo = 'itchyny/vim-haskell-indent'
+on_ft = 'haskell'
+on_i = 1
+
+[[plugins]]
+repo = 'enomsg/vim-haskellConcealPlus'
+on_ft = 'haskell'
+
+[[plugins]]
+repo = 'Twinside/vim-hoogle'
+on_ft = 'haskell'
+on_i = 1
+
+[[plugins]]
+repo = 'eagletmt/ghcmod-vim'
+on_ft = 'haskell'
+
+[[plugins]]
+repo = 'ujihisa/neco-ghc'
+on_ft = 'haskell'
+
+[[plugins]] # Codic
+repo = 'koron/codic-vim'
+on_cmd = 'Codic'
+
+[[plugins]] # Emmet
+repo = 'mattn/emmet-vim'
+on_i = 1
+hook_source = '''
+  let g:user_emmet_mode = 'i'
+  let g:user_emmet_leader_key='<C-E>'
+  let g:use_emmet_complete_tag = 1
+  let g:user_emmet_settings = {
+  \   'variables': {
+  \     'lang': "ja"
+  \   },
+  \   'indentation': '    '
+  \ }
+'''
+
+[[plugins]] # EditorConfig
+repo = 'editorconfig/editorconfig-vim'
+on_path = '.*'
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
+on_i = 1
+
