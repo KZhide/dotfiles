@@ -1,15 +1,28 @@
 export LANG=ja_JP.UTF-8
 bindkey -v
 
-autoload -U compinit; compinit
-autoload -Uz colors; colors
-
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 
-PROMPT="%{${fg[green]}%}[%n@%m]%{${reset_color}%} %~
-%# "
+# completion
+autoload -U compinit; compinit
+
+# colors
+autoload -Uz colors; colors
+PROMPT="%{${fg[green]}%}[%n@%m]%{${reset_color}%} %# "
+
+# vcs info
+autoload -Uz vcs_info
+
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () { vcs_info }
+RPROMPT='[%~]${vcs_info_msg_0_}'
 
 setopt auto_cd
 setopt auto_pushd
