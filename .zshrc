@@ -1,5 +1,6 @@
 export LANG=ja_JP.UTF-8
-bindkey -v
+bindkey -e
+bindkey -r '^T'
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
@@ -10,7 +11,8 @@ autoload -U compinit; compinit
 
 # colors
 autoload -Uz colors; colors
-PROMPT="%{${fg[green]}%}[%n@%m]%{${reset_color}%} %# "
+PROMPT="%{${fg[green]}%}[%n]
+%{${fg[red]}%}❱%{${fg[yellow]}%}❱%{${fg[blue]}%}❱ %{${reset_color}%}"
 
 # vcs info
 autoload -Uz vcs_info
@@ -31,4 +33,6 @@ setopt pushd_ignore_dups
 alias vi=nvim
 alias ls="ls -G"
 
-#eval "$(docker-machine env dev)"
+# ZPlug plugins
+source ~/.zplug/init.zsh
+zplug "b4b4r07/emoji-cli"

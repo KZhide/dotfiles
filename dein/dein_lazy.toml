@@ -83,3 +83,10 @@ on_path = '.*'
 repo = 'scrooloose/syntastic'
 on_i = 1
 
+[[plugins]]
+repo = 'kballard/vim-swift'
+on_ft = 'swift'
+
+[[plugins]]
+repo = 'keith/swift.vim'
+on_ft = 'swift'
