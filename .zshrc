@@ -15,10 +15,7 @@ setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
 
-
-export XDG_CONFIG_HOME=$HOME/dotfiles
 alias vi=nvim
 alias ls="ls -G"
 
-export PATH=$HOME/.nodebrew/current/bin:$HOME/.local/bin:$PATH
-eval "$(docker-machine env dev)"
+#eval "$(docker-machine env dev)"
