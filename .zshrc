@@ -12,7 +12,7 @@ autoload -U compinit; compinit
 # colors
 autoload -Uz colors; colors
 PROMPT="%{${fg[green]}%}[%n]
-%{${fg[red]}%}❱%{${fg[yellow]}%}❱%{${fg[blue]}%}❱ %{${reset_color}%}"
+%{${fg[red]}%}❱%{${fg[yellow]}%}❱%{${fg[green]}%}❱%{${fg[cyan]}%}❱%{${fg[magenta]}%}❱ %{${reset_color}%}"
 
 # vcs info
 autoload -Uz vcs_info
@@ -25,6 +25,14 @@ zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT='[%~]${vcs_info_msg_0_}'
+
+# history search
+function select-history() {
+  BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
+  CURSOR=$#BUFFER
+}
+zle -N select-history
+bindkey '^r' select-history
 
 setopt auto_cd
 setopt auto_pushd
