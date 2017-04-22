@@ -11,7 +11,7 @@ autoload -U compinit; compinit
 
 # colors
 autoload -Uz colors; colors
-PROMPT="%{${fg[green]}%}[%n]
+PROMPT="%{${fg[cyan]}%}[%n]
 %{${fg[red]}%}❱%{${fg[yellow]}%}❱%{${fg[green]}%}❱%{${fg[cyan]}%}❱%{${fg[magenta]}%}❱ %{${reset_color}%}"
 
 # vcs info
