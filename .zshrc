@@ -1,4 +1,6 @@
 export LANG=ja_JP.UTF-8
+export LSCOLORS=exfxcxdxbxegedabagacad
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 bindkey -e
 bindkey -r '^T'
 
@@ -8,6 +10,7 @@ SAVEHIST=1000
 
 # completion
 autoload -U compinit; compinit
+zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
 # colors
 autoload -Uz colors; colors
@@ -39,7 +42,12 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 
 alias vi=nvim
-alias ls="ls -G"
+case ${OSTYPE} in
+  darwin*)
+    alias ls="ls -G";;
+  linux*)
+    alias ls="ls --color";;
+esac
 
 # ZPlug plugins
 source ~/.zplug/init.zsh
