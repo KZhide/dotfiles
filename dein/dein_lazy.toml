@@ -8,6 +8,15 @@ hook_add = '''
   let g:unite_enable_start_insert = 1
 '''
 
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'Shougo/vimshell.vim'
+depends = ['vimproc']
+
+
 [[plugins]] # 補完
 repo = 'Shougo/deoplete.nvim'
 if = 'has("nvim")'
@@ -90,3 +99,7 @@ on_ft = 'swift'
 [[plugins]]
 repo = 'keith/swift.vim'
 on_ft = 'swift'
+
+[[plugins]]
+repo = 'racer-rust/vim-racer'
+on_ft = 'rust'

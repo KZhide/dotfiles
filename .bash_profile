@@ -4,3 +4,5 @@ alias ls="ls -G"
 
 export PATH=$HOME/.nodebrew/current/bin:$HOME/.local/bin:$PATH
 eval "$(docker-machine env dev)"
+
+export PATH="$HOME/.cargo/bin:$PATH"

@@ -40,6 +40,7 @@ setopt pushd_ignore_dups
 
 alias vi=nvim
 alias ls="ls -G"
+alias noti='terminal-notifier -message "Finished."'
 
 # ZPlug plugins
 source ~/.zplug/init.zsh

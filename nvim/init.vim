@@ -43,3 +43,6 @@ if dein#check_install()
 endif
 
 colorscheme zenburn
+
+command! Memo edit ~/inbox.md
+

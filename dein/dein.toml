@@ -2,10 +2,6 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/vimproc.vim'
-build = 'make'
-
-[[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
@@ -36,6 +32,13 @@ on_ft = 'tmux'
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = 'rust'
+hook_add = '''
+  let g:syntastic_rust_checkers = ['rustc']
+'''
+
 [[plugins]] # markdown
 repo = 'rcmdnk/vim-markdown'
 on_ft = ['markdown', 'mkd']
@@ -52,7 +55,7 @@ repo = 'tpope/vim-fugitive'
 [[plugins]] # ステータスライン
 repo = 'itchyny/lightline.vim'
 hook_add = '''
-  let g:lightline = { 
+  let g:lightline = {
   \   'colorscheme': 'wombat'
   \ }
 '''
@@ -78,4 +81,3 @@ repo = 'jnurmine/Zenburn'
 [[plugins]] # Japanese doc
 repo = 'vim-jp/vimdoc-ja'
 on_ft = 'help'
-
