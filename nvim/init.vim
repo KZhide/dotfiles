@@ -45,4 +45,3 @@ endif
 colorscheme zenburn
 
 command! Memo edit ~/inbox.md
-

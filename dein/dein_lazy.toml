@@ -9,12 +9,8 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/vimproc.vim'
-build = 'make'
-
-[[plugins]]
 repo = 'Shougo/vimshell.vim'
-depends = ['vimproc']
+depends = ['vimproc.vim']
 
 
 [[plugins]] # 補完
