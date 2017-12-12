@@ -19,11 +19,23 @@ if = 'has("nvim")'
 on_i = 1
 hook_add = '''
   " <TAB> で補完を選択
-  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<tab>"
+  imap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+  smap <expr> <Tab> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 '''
 hook_source = '''
   let g:deoplete#enable_at_startup = 1
 '''
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+depends = ['neosnippet-snippets']
+hook_source = '''
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_or_jump)
+'''
+on_i = 1
+on_ft = ['snippet']
 
 [[plugins]]
 repo = 'junegunn/fzf'
@@ -60,6 +72,9 @@ on_ft = 'haskell'
 [[plugins]]
 repo = 'ujihisa/neco-ghc'
 on_ft = 'haskell'
+hook_add = '''
+  let g:necoghc_use_stack = 1
+'''
 
 [[plugins]] # Codic
 repo = 'koron/codic-vim'

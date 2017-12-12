@@ -45,3 +45,7 @@ endif
 colorscheme zenburn
 
 command! Memo edit ~/inbox.md
+
+noremap t j
+noremap n k
+noremap s l
