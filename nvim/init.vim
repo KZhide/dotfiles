@@ -7,6 +7,7 @@ set autoindent
 set smartindent
 filetype plugin indent on
 set colorcolumn=80
+set mouse=a
 
 if &compatible
   set nocompatible
@@ -26,8 +27,8 @@ if !isdirectory(s:dein_repo_dir)
 endif
 execute 'set runtimepath^=' . s:dein_repo_dir
 
-let s:toml = g:config_home . '/dein/dein.toml'
-let s:lazy_toml = g:config_home . '/dein/dein_lazy.toml'
+let s:toml = g:config_home . '/nvim/dein/dein.toml'
+let s:lazy_toml = g:config_home . '/nvim/dein/dein_lazy.toml'
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 

@@ -1,12 +1,18 @@
 export LANG=ja_JP.UTF-8
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+
+# path_helper問題を回避するため.zshenv -> .zshrcに移動
+export PATH=$HOME/bin:$HOME/Library/Android/sdk/platform-tools:/usr/local/opt/openssl/bin:$HOME/.nodebrew/current/bin:$HOME/.local/bin:$PATH
+
 bindkey -e
 bindkey -r '^T'
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
+
+fpath=($fpath /usr/local/Cellar/zsh/5.4.1_2/share/zsh/functions)
 
 # completion
 autoload -U compinit; compinit
@@ -52,4 +58,5 @@ alias noti='terminal-notifier -message "Finished."'
 
 # ZPlug plugins
 source ~/.zplug/init.zsh
-zplug "b4b4r07/emoji-cli"
+zplug "b4b4r07/emoji-cli", if:"which jq"
+zplug load

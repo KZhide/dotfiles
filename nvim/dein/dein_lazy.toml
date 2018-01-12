@@ -1,11 +1,11 @@
 [[plugins]]
-repo = 'Shougo/unite.vim'
+repo = 'Shougo/denite.nvim'
 hook_add = '''
-  nnoremap <silent> ,b :<C-u>Unite buffer<CR>
-  nnoremap <silent> ,f :<C-u>Unite file -buffer-name=files<CR>
-  nnoremap <silent> ,r :<C-u>Unite register -buffer-name=register<CR>
-  nnoremap <silent> ,m :<C-u>Unite file_mru<CR>
-  let g:unite_enable_start_insert = 1
+  nnoremap <silent> ,b :<C-u>Denite buffer<CR>
+  nnoremap <silent> ,f :<C-u>Denite file -buffer-name=files<CR>
+  nnoremap <silent> ,r :<C-u>Denite register -buffer-name=register<CR>
+  nnoremap <silent> ,m :<C-u>Denite file_mru<CR>
+  let g:denite_enable_start_insert = 1
 '''
 
 [[plugins]]
