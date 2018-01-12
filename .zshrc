@@ -58,5 +58,6 @@ alias noti='terminal-notifier -message "Finished."'
 
 # ZPlug plugins
 source ~/.zplug/init.zsh
+
 zplug "b4b4r07/emoji-cli", if:"which jq"
 zplug load

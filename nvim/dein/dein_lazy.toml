@@ -18,6 +18,7 @@ repo = 'Shougo/deoplete.nvim'
 if = 'has("nvim")'
 on_i = 1
 hook_add = '''
+  let g:deoplete#enable_at_startup = 1
   " <TAB> で補完を選択
   imap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
   smap <expr> <Tab> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
