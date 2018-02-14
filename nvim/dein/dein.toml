@@ -47,21 +47,61 @@ hook_add = '''
   let g:vim_markdown_folding_disabled = 1
 '''
 [[plugins]]
+repo = 'kannokanno/previm'
+on_ft = ['markdown', 'mkd']
+hook_add = '''
+  let g:previm_open_cmd = 'open -a Google\ Chrome'
+'''
+
+[[plugins]]
 repo = 'jiangmiao/auto-pairs'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+  let g:gitgutter_sign_added = '✚'
+  let g:gitgutter_sign_modified = '↻'
+  let g:gitgutter_sign_removed = '×'
+  let g:gitgutter_sign_modified_removed = '×'
+'''
+
 [[plugins]] # ステータスライン
 repo = 'itchyny/lightline.vim'
 hook_add = '''
+  set noshowmode
   let g:lightline = {
-  \   'colorscheme': 'wombat'
-  \ }
+\    'colorscheme': 'powerline',
+\    'active': {
+\      'left': [
+\        ['mode', 'paste'], ['fugitive', 'filename'],
+\      ],
+\      'right': [
+\        ['lineinfo', 'sintastic'],
+\        ['percent'],
+\        ['fileformat', 'fileencoding', 'filetype'],
+\      ],
+\    },
+\    'component_function': {
+\      'sintastic': 'SyntasticStatuslineFlag',
+\      'fugitive': 'MyFugitive',
+\    },
+\    'separator': {'left': "\ue0b0", 'right': "\ue0b2"},
+\    'subseparatr': {'left': "\ue0b1", 'right': "\ue0b3"},
+\  }
+  function! MyFugitive()
+    try
+      if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+        let _ = fugitive#head()
+        return strlen(_) ? '['._.']' : ''
+      endif
+    catch
+    endtry
+    return ''
+  endfunction
 '''
-
-[[plugins]]
-repo = 'tpope/vim-fugitive'
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
@@ -81,3 +121,27 @@ repo = 'jnurmine/Zenburn'
 [[plugins]] # Japanese doc
 repo = 'vim-jp/vimdoc-ja'
 on_ft = 'help'
+
+# Memo
+[[plugins]]
+repo = 'glidenote/memolist.vim'
+hook_add = '''
+nnoremap <Leader>mn :MemoNew<CR>
+nnoremap <Leader>ml :MemoList<CR>
+let g:memolist_denite = 1
+function! s:memoGrepDenite()
+  let l:option = '-path=' . expand('$HOME/memo')
+  exe 'Denite' 'grep' l:option '-highlight-mode-insert=Search'
+endfunction
+
+command! MemoGrepDenite call s:memoGrepDenite()<CR>
+nnoremap <Leader>mg :MemoGrepDenite<CR>
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+

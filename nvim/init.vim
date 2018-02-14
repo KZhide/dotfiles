@@ -8,6 +8,7 @@ set smartindent
 filetype plugin indent on
 set colorcolumn=80
 set mouse=a
+let g:mapleader = ","
 
 if &compatible
   set nocompatible
@@ -45,8 +46,34 @@ endif
 
 colorscheme zenburn
 
-command! Memo edit ~/inbox.md
-
+" keymap for dvoraker
 noremap t j
 noremap n k
 noremap s l
+
+noremap j s
+noremap J S
+noremap k n
+noremap K N
+noremap l t
+noremap L T
+noremap T J
+" keymap of window splitting (the same with tmux)
+nnoremap <Leader>- :<C-u>split<CR>
+nnoremap <Leader>\| :<C-u>vsplit<CR>
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>t <C-w>j
+nnoremap <Leader>n <C-w>k
+nnoremap <Leader>s <C-w>l
+
+scriptencoding utf-8
+" 不可視文字の表示
+set list
+" tab: »-
+" 行末の空白: ･
+" ノーブレークスペース: ⍽
+" 画面の右側に文字があるとき: »
+" 画面の左側に文字があるとき: «
+set listchars=tab:»-,trail:･,nbsp:⍽,extends:»,precedes:«
+autocmd Colorscheme * highlight FullWidthSpace cterm=reverse ctermfg=DarkGreen gui=reverse guifg=DarkGreen
+autocmd VimEnter * match FullWidthSpace /　/
