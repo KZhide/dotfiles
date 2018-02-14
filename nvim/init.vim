@@ -75,5 +75,3 @@ set list
 " 画面の右側に文字があるとき: »
 " 画面の左側に文字があるとき: «
 set listchars=tab:»-,trail:･,nbsp:⍽,extends:»,precedes:«
-autocmd Colorscheme * highlight FullWidthSpace cterm=reverse ctermfg=DarkGreen gui=reverse guifg=DarkGreen
-autocmd VimEnter * match FullWidthSpace /　/
