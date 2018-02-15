@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# PLATFORM is the environment variable that
+# retrieves the name of the running platform
+export PLATFORM
+
+is_bash() {
+  [ -n "$BASH_VERSION" ]
+}
+
+is_zsh() {
+  [ -n "$ZSH_VERSION" ]
+}
+
+ostype() {
+  uname | tr '[:upper:]' '[:lower:]'
+}
+
+os_detect() {
+  export PLATFORM
+  case "$(ostype)" in
+    *'linux'*)  PLATFORM='linux' ;;
+    *'darwin'*) PLATFORM='osx' ;;
+    *)          PLATFORM='unknown' ;;
+  esac
+}
+
+is_exists() {
+  which "$1" >/dev/null 2>&1
+  return $?
+}
+
+os_detect
+
+# set $DOTPATH
+if [ -z "${DOTPATH:-}" ]; then
+  DOTPATH=~/dotfilestest; export DOTPATH
+fi
+
+# clone dotfiles to $DOTPATH
+dotfiles_download() {
+  if is_exists "git"; then
+    git clone --recursive https://github.com/KZhide/dotfiles.git "$DOTPATH"
+  fi
+}
+
+dotfiles_download

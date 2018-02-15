@@ -73,10 +73,10 @@ repo = 'itchyny/lightline.vim'
 hook_add = '''
   set noshowmode
   let g:lightline = {
-\    'colorscheme': 'powerline',
+\    'colorscheme': 'wombat',
 \    'active': {
 \      'left': [
-\        ['mode', 'paste'], ['fugitive', 'filename'],
+\        ['mode', 'paste'], ['fugitive'], ['filename'],
 \      ],
 \      'right': [
 \        ['lineinfo', 'sintastic'],
@@ -95,7 +95,7 @@ hook_add = '''
     try
       if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
         let _ = fugitive#head()
-        return strlen(_) ? '['._.']' : ''
+        return strlen(_) ? _ : ''
       endif
     catch
     endtry
