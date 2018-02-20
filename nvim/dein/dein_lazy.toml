@@ -129,3 +129,4 @@ on_ft = 'swift'
 [[plugins]]
 repo = 'racer-rust/vim-racer'
 on_ft = 'rust'
+

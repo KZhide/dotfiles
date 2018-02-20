@@ -73,7 +73,7 @@ repo = 'itchyny/lightline.vim'
 hook_add = '''
   set noshowmode
   let g:lightline = {
-\    'colorscheme': 'wombat',
+\    'colorscheme': 'powerline',
 \    'active': {
 \      'left': [
 \        ['mode', 'paste'], ['fugitive'], ['filename'],
@@ -145,3 +145,9 @@ depends = ['context_filetype.vim']
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
+[[plugins]]
+repo = 'tyru/caw.vim'
+hook_add = '''
+nmap <Leader>c <Plug>(caw:prefix)
+vmap <Leader>c <Plug>(caw:prefix)
+'''

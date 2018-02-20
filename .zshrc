@@ -61,4 +61,12 @@ alias noti='terminal-notifier -message "Finished."'
 source ~/.zplug/init.zsh
 
 zplug "b4b4r07/emoji-cli", if:"which jq"
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  fi
+fi
 zplug load
+
+export EMOJI_CLI_KEYBIND=^s
