@@ -9,6 +9,10 @@ export PATH=$PATH:`npm bin -g`
 bindkey -e
 bindkey -r '^T'
 
+# ctrl-sとctrl-qをsttyに奪われないようにする
+stty stop undef
+stty start undef
+
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
@@ -67,6 +71,4 @@ if ! zplug check --verbose; then
     echo; zplug install
   fi
 fi
-zplug load
-
-export EMOJI_CLI_KEYBIND=^s
+zplug load --verbose
