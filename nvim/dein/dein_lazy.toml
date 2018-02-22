@@ -1,12 +1,38 @@
 [[plugins]]
 repo = 'Shougo/denite.nvim'
+on_cmd = 'Denite'
+hook_post_source = '''
+  if executable('rg')
+    call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
+    call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
+    call denite#custom#var('grep', 'recursive_opts', [])
+    call denite#custom#var('grep', 'final_opts', [])
+    call denite#custom#var('grep', 'separetor', ['--'])
+    call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
+  else
+  endif
+  call denite#custom#map('insert', '<C-t>', '<denite:move_to_next_line>', 'noremap')
+  call denite#custom#map('insert', '<C-n>', '<denite:move_to_previous_line>', 'noremap')
+'''
 hook_add = '''
   nnoremap <silent> <Leader>ub :<C-u>Denite buffer<CR>
   nnoremap <silent> <Leader>uf :<C-u>Denite file -buffer-name=files<CR>
   nnoremap <silent> <Leader>ur :<C-u>Denite register -buffer-name=register<CR>
   nnoremap <silent> <Leader>um :<C-u>Denite file_mru<CR>
   let g:denite_enable_start_insert = 1
+  nnoremap <silent> <Leader>ug :<C-u>Denite grep -buffer-name=search-buffer-denite<CR>
+  nnoremap <silent> <Leader>uug :<C-u>Denite -resume -buffer-name=search-buffer-denite<CR>
+  nnoremap <silent> <Leader>uh :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=-1 -immediately<CR>
+  nnoremap <silent> <Leader>us :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=+1 -immediately<CR>
 '''
+
+[[plugins]]
+repo = 'pocari/vim-denite-emoji'
+depends = ['denite.nvim', 'vim-emoji']
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/neossh.vim'
 
 [[plugins]]
 repo = 'Shougo/vimshell.vim'
@@ -52,31 +78,6 @@ repo = 'Shougo/neoyank.vim'
 on_path = '.*'
 on_i = 1
 
-[[plugins]]
-repo = 'itchyny/vim-haskell-indent'
-on_ft = 'haskell'
-on_i = 1
-
-[[plugins]]
-repo = 'enomsg/vim-haskellConcealPlus'
-on_ft = 'haskell'
-
-[[plugins]]
-repo = 'Twinside/vim-hoogle'
-on_ft = 'haskell'
-on_i = 1
-
-[[plugins]]
-repo = 'eagletmt/ghcmod-vim'
-on_ft = 'haskell'
-
-[[plugins]]
-repo = 'ujihisa/neco-ghc'
-on_ft = 'haskell'
-hook_add = '''
-  let g:necoghc_use_stack = 1
-'''
-
 [[plugins]] # Codic
 repo = 'koron/codic-vim'
 on_cmd = 'Codic'
@@ -110,23 +111,4 @@ hook_add = '''
   let g:syntastic_check_on_open = 1
   let g:syntastic_javascript_checkers=['eslint']
 '''
-
-[[plugins]]
-repo = 'mtscout6/syntastic-local-eslint.vim'
-on_ft = 'javascript'
-hook_add = '''
-'''
-
-
-[[plugins]]
-repo = 'kballard/vim-swift'
-on_ft = 'swift'
-
-[[plugins]]
-repo = 'keith/swift.vim'
-on_ft = 'swift'
-
-[[plugins]]
-repo = 'racer-rust/vim-racer'
-on_ft = 'rust'
 

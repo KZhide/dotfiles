@@ -29,11 +29,13 @@ endif
 execute 'set runtimepath^=' . s:dein_repo_dir
 
 let s:toml = g:config_home . '/nvim/dein/dein.toml'
+let s:ft_toml = g:config_home . '/nvim/dein/deinft.toml'
 let s:lazy_toml = g:config_home . '/nvim/dein/dein_lazy.toml'
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
   call dein#load_toml(s:toml, {'lazy': 0})
+  call dein#load_toml(s:ft_toml, {'lazy': 1})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
   call dein#end()
