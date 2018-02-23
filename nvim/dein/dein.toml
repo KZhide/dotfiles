@@ -17,10 +17,10 @@ repo = 'tpope/vim-fugitive'
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 hook_add = '''
-  let g:gitgutter_sign_added = '✚'
-  let g:gitgutter_sign_modified = '↻'
-  let g:gitgutter_sign_removed = '×'
-  let g:gitgutter_sign_modified_removed = '×'
+  let g:gitgutter_sign_added = '+'
+  let g:gitgutter_sign_modified = '~'
+  let g:gitgutter_sign_removed = '-'
+  let g:gitgutter_sign_modified_removed = '~'
 '''
 
 [[plugins]] # ステータスライン
@@ -34,13 +34,13 @@ hook_add = '''
 \        ['mode', 'paste'], ['fugitive'], ['readonly', 'filename', 'modified'],
 \      ],
 \      'right': [
-\        ['lineinfo', 'sintastic'],
-\        ['percent'],
+\        ['lineinfo', 'percent'],
+\        ['ale'],
 \        ['fileformat', 'fileencoding', 'filetype'],
 \      ],
 \    },
 \    'component_function': {
-\      'sintastic': 'SyntasticStatuslineFlag',
+\      'ale': 'ALEGetStatusLine',
 \      'fugitive': 'MyFugitive',
 \    },
 \    'separator': {'left': "\ue0b0", 'right': "\ue0b2"},
@@ -105,3 +105,21 @@ vmap <Leader>c <Plug>(caw:prefix)
 [[plugins]]
 repo = 'junegunn/vim-emoji'
 
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+let g:ale_statusline_format = ['× %d', '⚠ %d', '✓ OK']
+let g:ale_linters = {
+      \   'javascript': ['eslint'],
+      \   'html': ['tidy'],
+      \   'c': ['gcc', 'clangtidy', 'clang-format'],
+      \   'cpp': ['gcc', 'clangtidy', 'clang-format', 'cppcheck', 'cpplint'],
+      \   'haskell': ['stack-ghc-mod', 'hlint'],
+      \ }
+let g:ale_sign_warning = '⚠'
+let g:ale_sign_error = '×'
+augroup LightLineOnALE
+  autocmd!
+  autocmd User ALELint call lightline#update()
+augroup END
+'''

@@ -1,3 +1,7 @@
+#========================
+# denite.nvim and sources
+#========================
+
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
@@ -29,15 +33,28 @@ hook_add = '''
 [[plugins]]
 repo = 'pocari/vim-denite-emoji'
 depends = ['denite.nvim', 'vim-emoji']
-on_i = 1
+on_source = ['denite.nvim']
 
 [[plugins]]
-repo = 'Shougo/neossh.vim'
+repo = 'Shougo/neomru.vim'
+depends = ['denite.nvim']
+on_source = ['denite.nvim']
+
+[[plugins]]
+repo = 'iyuuya/denite-ale'
+on_path = '.*'
+depends = ['ale']
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_path = '.*'
+depends = ['denite.nvim']
+
+#========================
 
 [[plugins]]
 repo = 'Shougo/vimshell.vim'
 depends = ['vimproc.vim']
-
 
 [[plugins]] # 補完
 repo = 'Shougo/deoplete.nvim'
@@ -69,15 +86,6 @@ repo = 'junegunn/fzf'
 if = 'executable("fzf")'
 on_cmd = ['FZF','fzf#run']
 
-[[plugins]]
-repo = 'Shougo/neomru.vim'
-on_path = '.*'
-
-[[plugins]]
-repo = 'Shougo/neoyank.vim'
-on_path = '.*'
-on_i = 1
-
 [[plugins]] # Codic
 repo = 'koron/codic-vim'
 on_cmd = 'Codic'
@@ -99,16 +107,16 @@ hook_source = '''
 
 [[plugins]] # EditorConfig
 repo = 'editorconfig/editorconfig-vim'
-on_path = '.*'
-
-[[plugins]]
-repo = 'scrooloose/syntastic'
 on_i = 1
-hook_add = '''
-  let g:syntastic_enable_signs = 1
-  let g:syntastic_always_populate_loc_list = 0
-  let g:syntastic_auto_loc_list = 0
-  let g:syntastic_check_on_open = 1
-  let g:syntastic_javascript_checkers=['eslint']
-'''
+
+# [[plugins]]
+# repo = 'scrooloose/syntastic'
+# on_i = 1
+# hook_add = '''
+#   let g:syntastic_enable_signs = 1
+#   let g:syntastic_always_populate_loc_list = 0
+#   let g:syntastic_auto_loc_list = 0
+#   let g:syntastic_check_on_open = 1
+#   let g:syntastic_javascript_checkers=['eslint']
+# '''
 
