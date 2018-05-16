@@ -45,7 +45,13 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT='[%~]${vcs_info_msg_0_}'
 
-# history search
+#=========
+# history
+#=========
+
+setopt hist_ignore_all_dups
+setopt hist_no_store
+
 function select-history() {
   BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
   CURSOR=$#BUFFER
