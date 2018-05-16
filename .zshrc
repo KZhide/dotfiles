@@ -5,6 +5,11 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 # path_helper問題を回避するため.zshenv -> .zshrcに移動
 export PATH=$HOME/bin:$HOME/Library/Android/sdk/platform-tools:/usr/local/opt/openssl/bin:$HOME/.nodebrew/current/bin:$HOME/.local/bin:$PATH
 export PATH=$PATH:`npm bin -g`
+export PATH=$HOME/.rbenv/bin:$PATH
+if which rbenv > /dev/null ; then eval "$(rbenv init -)"; fi
+export PATH=$HOME/.gem/bin:$PATH
+
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
 
 bindkey -e
 bindkey -r '^T'
