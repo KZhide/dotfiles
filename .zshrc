@@ -71,15 +71,17 @@ case ${OSTYPE} in
     alias ls="ls --color";;
 esac
 alias noti='terminal-notifier -message "Finished."'
+alias pkill="ps aux | fzf | awk '{print \$2}' | xargs kill"
 
 # ZPlug plugins
 source ~/.zplug/init.zsh
 
 zplug "b4b4r07/emoji-cli", if:"which jq"
-if ! zplug check --verbose; then
+zplug "arks22/tmuximum", as:command
+if ! zplug check; then
   printf "Install? [y/N]: "
   if read -q; then
     echo; zplug install
   fi
 fi
-zplug load --verbose
+zplug load
