@@ -40,6 +40,10 @@ hook_add = '''
   let g:previm_open_cmd = 'open -a Google\ Chrome'
 '''
 
+[[plugins]]
+repo = 'digitaltoad/vim-pug'
+on_ft = ['pug']
+
 [[plugins]] # Japanese doc
 repo = 'vim-jp/vimdoc-ja'
 on_ft = 'help'

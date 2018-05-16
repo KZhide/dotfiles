@@ -8,6 +8,7 @@ set smartindent
 filetype plugin indent on
 set colorcolumn=80
 set mouse=a
+set hidden
 let g:mapleader = ","
 
 if &compatible
@@ -18,6 +19,10 @@ endif
 augroup MyAutoCmd
   autocmd!
 augroup END
+
+au BufRead,BufNewFile,BufReadPre *.jade setf pug
+au BufRead,BufNewFile,BufReadPre *.gsql setf gsql
+au TermOpen * setlocal nonumber norelativenumber
 
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
