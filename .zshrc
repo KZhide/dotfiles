@@ -10,6 +10,8 @@ if which rbenv > /dev/null ; then eval "$(rbenv init -)"; fi
 export PATH=$HOME/.gem/bin:$PATH
 
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
+export NVIM_PYTHON_LOG_FILE=/tmp/log
+export NVIM_PYTHON_LOG_LEVEL=DEBUG
 
 bindkey -e
 bindkey -r '^T'

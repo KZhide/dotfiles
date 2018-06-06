@@ -6,9 +6,6 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
 repo = 'jiangmiao/auto-pairs'
 
 [[plugins]]
@@ -114,7 +111,7 @@ let g:ale_linters = {
       \   'html': ['tidy'],
       \   'c': ['gcc', 'clangtidy', 'clang-format'],
       \   'cpp': ['gcc', 'clangtidy', 'clang-format', 'cppcheck', 'cpplint'],
-      \   'haskell': ['stack-ghc-mod', 'hlint'],
+      \   'haskell': ['stack-ghc-mod', 'hlint', 'stack-ghc'],
       \ }
 let g:ale_sign_warning = '⚠'
 let g:ale_sign_error = '×'
@@ -123,3 +120,20 @@ augroup LightLineOnALE
   autocmd User ALELint call lightline#update()
 augroup END
 '''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+depends = ['neosnippet-snippets']
+hook_add = '''
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_or_jump)
+
+  let g:neosnippet#enable_snipmate_compatibility = 1
+  let g:neosnippet#enable_completed_snippet = 1
+  let g:neosnippet#expand_word_boundary = 1
+'''
+on_ft = ['snippet']

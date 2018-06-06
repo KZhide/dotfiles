@@ -55,6 +55,15 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'othree/yajs.vim'
+on_ft = 'javascript'
+hook_add = ''''''
+
+[[plugins]]
+repo = 'MaxMEllon/vim-jsx-pretty'
+on_ft = 'javascript'
+
+[[plugins]]
 repo = 'kballard/vim-swift'
 on_ft = 'swift'
 
@@ -76,17 +85,19 @@ repo = 'enomsg/vim-haskellConcealPlus'
 on_ft = 'haskell'
 
 [[plugins]]
-repo = 'Twinside/vim-hoogle'
-on_ft = 'haskell'
-on_i = 1
-
-[[plugins]]
 repo = 'eagletmt/ghcmod-vim'
 on_ft = 'haskell'
 
 [[plugins]]
-repo = 'ujihisa/neco-ghc'
+repo = 'eagletmt/neco-ghc'
 on_ft = 'haskell'
+external_commands = 'ghc-mod'
 hook_add = '''
-  let g:necoghc_use_stack = 1
+let g:necoghc_use_stack = 0
+let g:necoghc_enable_detailed_browse = 1
+let g:necoghc_debug = 1
 '''
+
+[[plugins]]
+repo = 'zchee/deoplete-clang'
+on_ft = ['c', 'cpp']

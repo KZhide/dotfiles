@@ -15,6 +15,29 @@ if &compatible
   set nocompatible
 endif
 
+let g:config_home = strlen($XDG_CONFIG_HOME) ? $XDG_CONFIG_HOME : '~/.config'
+let g:cache_home = strlen($XDG_CACHE_HOME) ? $XDG_CACHE_HOME : '~/.cache'
+
+function! s:source_rc(path, ...) abort " vimscript fileを読み込む
+  let use_global = get(a:000, 0, !has('vim_starting'))
+  let abspath = resolve(expand(g:config_home . '/nvim' . a:path))
+  if !use_global
+    execute 'source' fnameescape(abspath)
+    return
+  endif
+
+  let content = map(readfile(abspath), 'substitute(v:val, "^\\W*\\zsset\\ze\\W", "setglobal", "")')
+  let tempfile = tempname()
+  try
+    call writefile(content, tempfile)
+    execute 'source' fnameescape(tempfile)
+  finally
+    if filereadable(tempfile)
+      call delete(tempfile)
+    endif
+  endtry
+endfunction
+
 " reset augroup
 augroup MyAutoCmd
   autocmd!
@@ -24,32 +47,15 @@ au BufRead,BufNewFile,BufReadPre *.jade setf pug
 au BufRead,BufNewFile,BufReadPre *.gsql setf gsql
 au TermOpen * setlocal nonumber norelativenumber
 
-let s:dein_dir = expand('~/.cache/dein')
+let s:dein_dir = expand(g:cache_home . '/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-let g:config_home = $XDG_CONFIG_HOME
 
 if !isdirectory(s:dein_repo_dir)
   execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 endif
 execute 'set runtimepath^=' . s:dein_repo_dir
 
-let s:toml = g:config_home . '/nvim/dein/dein.toml'
-let s:ft_toml = g:config_home . '/nvim/dein/deinft.toml'
-let s:lazy_toml = g:config_home . '/nvim/dein/dein_lazy.toml'
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-
-  call dein#load_toml(s:toml, {'lazy': 0})
-  call dein#load_toml(s:ft_toml, {'lazy': 1})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
-
-  call dein#end()
-  call dein#save_state()
-endif
-
-if dein#check_install()
-  call dein#install()
-endif
+call s:source_rc('/dein.rc.vim')
 
 colorscheme zenburn
 

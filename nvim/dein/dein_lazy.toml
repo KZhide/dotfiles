@@ -59,30 +59,18 @@ depends = ['denite.nvim']
 repo = 'Shougo/vimshell.vim'
 depends = ['vimproc.vim']
 
+
 [[plugins]] # 補完
 repo = 'Shougo/deoplete.nvim'
-if = 'has("nvim")'
 on_i = 1
-hook_add = '''
+hook_source = '''
   let g:deoplete#enable_at_startup = 1
+  let g:deoplete#file#enable_buffer_path = 1
+  let g:deoplete#file#enable_smart_case = 1
   " <TAB> で補完を選択
   imap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
   smap <expr> <Tab> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 '''
-hook_source = '''
-  let g:deoplete#enable_at_startup = 1
-'''
-
-[[plugins]]
-repo = 'Shougo/neosnippet'
-depends = ['neosnippet-snippets']
-hook_source = '''
-  imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  smap <C-k> <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k> <Plug>(neosnippet_expand_or_jump)
-'''
-on_i = 1
-on_ft = ['snippet']
 
 [[plugins]]
 repo = 'junegunn/fzf'
