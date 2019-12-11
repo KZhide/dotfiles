@@ -1,3 +1,7 @@
+[[plugins]]
+repo = 'killphi/vim-ebnf'
+on_ft = 'ebnf'
+
 [[plugins]] # Haml
 repo  = 'tpope/vim-haml'
 on_ft = 'haml'
@@ -22,22 +26,22 @@ on_ft = 'toml'
 repo = 'rust-lang/rust.vim'
 on_ft = 'rust'
 hook_add = '''
-  let g:syntastic_rust_checkers = ['rustc']
+let g:syntastic_rust_checkers = ['rustc']
 '''
 
 [[plugins]] # markdown
 repo = 'rcmdnk/vim-markdown'
 on_ft = ['markdown', 'mkd']
 hook_add = '''
-  let g:vim_markdown_frontmatter = 1
-  let g:vim_markdown_math = 1
-  let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_math = 1
+let g:vim_markdown_folding_disabled = 1
 '''
 [[plugins]]
 repo = 'kannokanno/previm'
 on_ft = ['markdown', 'mkd']
 hook_add = '''
-  let g:previm_open_cmd = 'open -a Google\ Chrome'
+let g:previm_open_cmd = 'open -a Google\ Chrome'
 '''
 
 [[plugins]]
@@ -55,9 +59,20 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'pangloss/vim-javascript'
+on_ft = 'javascript'
+
+[[plugins]]
 repo = 'othree/yajs.vim'
 on_ft = 'javascript'
-hook_add = ''''''
+
+[[plugins]]
+repo = 'othree/es.next.syntax.vim'
+on_ft = 'javascript'
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+on_ft = 'typescript'
 
 [[plugins]]
 repo = 'MaxMEllon/vim-jsx-pretty'
@@ -75,6 +90,22 @@ on_ft = 'swift'
 repo = 'racer-rust/vim-racer'
 on_ft = 'rust'
 
+# Haskell
+
+[[plugins]]
+repo = 'neovimhaskell/haskell-vim'
+on_ft = 'haskell'
+hook_add = '''
+let g:haskell_indent_disable = 1
+let g:haskell_enable_quantification = 1
+let g:haskell_enable_recursivedo = 1
+let g:haskell_enable_arrowsyntax = 1
+let g:haskell_enable_pattern_synonyms = 1
+let g:haskell_enable_typeroles = 1
+let g:haskell_enable_static_pointers = 1
+let g:haskell_backpack = 1
+'''
+
 [[plugins]]
 repo = 'itchyny/vim-haskell-indent'
 on_ft = 'haskell'
@@ -84,20 +115,18 @@ on_i = 1
 repo = 'enomsg/vim-haskellConcealPlus'
 on_ft = 'haskell'
 
-[[plugins]]
-repo = 'eagletmt/ghcmod-vim'
-on_ft = 'haskell'
+#[[plugins]]
+#repo = 'nbouscal/vim-stylish-haskell'
+#on_ft = 'haskell'
 
 [[plugins]]
-repo = 'eagletmt/neco-ghc'
-on_ft = 'haskell'
-external_commands = 'ghc-mod'
-hook_add = '''
-let g:necoghc_use_stack = 0
-let g:necoghc_enable_detailed_browse = 1
-let g:necoghc_debug = 1
-'''
+repo = 'tikhomirov/vim-glsl'
+on_ft = 'glsl'
 
 [[plugins]]
-repo = 'zchee/deoplete-clang'
-on_ft = ['c', 'cpp']
+repo = 'tomlion/vim-solidity'
+on_ft = 'solidity'
+
+[[plugins]]
+repo = 'mechatroner/rainbow_csv'
+on_ft = 'csv'
