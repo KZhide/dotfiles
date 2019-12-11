@@ -1,36 +1,66 @@
-syntax keyword gsqlKeyword accum order by asc desc where having post-accum
-syntax keyword gsqlKeyword create drop add install alter select
-syntax keyword gsqlIdentifier schema_change job query graph for attribute from as interval
-syntax keyword gsqlStatement print load
-syntax keyword gsqlConditional if then else end
-syntax keyword gsqlRepeat foreach in while do
-syntax keyword gsqlFunction neighbors neighborAttribute datetime_to_epoch
-syntax keyword gsqlFunction datetime_add datetime_diff datetime_sub to_datetime
+if exists("b:current_syntax")
+  finish
+endif
 
-syntax keyword type int uint bool jsonobject jsonarray
-syntax keyword type string
-syntax keyword type double
-syntax keyword type float
-syntax keyword type datetime
-syntax keyword type vertex
-syntax keyword type edge
-syntax keyword type SetAccum SumAccum MaxAccum AvgAccum OrAccum AndAccum BitwiseOrACcum
-syntax keyword type BitwiseAndAccum ListAccum BagAccum MapAccum HeapAccum ArrayAccum GroupByAccum
+syntax case ignore
 
-syn region gsqlString start=+"+ skip=+\\\\\|\\"+ end=+"+
-syn match gsqlNumber "-\=\<[0-9]*\>"
-syn match gsqlNumber "-\=\<[0-9]*\.[0-9]*\>"
+syn keyword basicType int float double bool string uint true false
+syn keyword gsqlType OrAccum SumAccum MaxAccum MinAccum ListAccum MapAccum BagAccum SetAccum AvgAccum
+syn keyword gsqlTodo contained TODO FIXME XXX NOTE
 
-syn region gsqlComment start="/\*" end="\*/"
-syn match gsqlComment "//.*$"
+syn keyword gsqlKeywords create query for graph clear export vertex edge job loading online_post
+syn keyword gsqlKeywords values to load using run with drop alter
+syn keyword gsqlKeywords select from where accum order by limit having when case end else then
+syn keyword gsqlKeywords print type delete upsert while if
 
-highlight link gsqlKeyword Keyword
-highlight link type Type
-highlight link gsqlStatement Statement
-highlight link gsqlIdentifier Identifier
-highlight link gsqlConditional Conditional
-highlight link gsqlRepeat Repeat
-highlight link gsqlComment Comment
-highlight link gsqlString String
-highlight link gsqlNumber Number
-highlight link gsqlFunction Function
+syn match gsqlComment  "#.*$" contains=gsqlTodo
+syn match gsqlComment  "//.*$" contains=gsqlTodo
+syn match gsqlOperator "\v\+\="
+syn match gsqlOperator "\v\="
+syn match gsqlOperator "\v!\="
+syn match gsqlOperator "\v\>\="
+syn match gsqlOperator "\v\>"
+syn match gsqlOperator "\v\<"
+syn match gsqlOperator "\v\@"
+syn match gsqlEdge     "-("
+syn match gsqlEdge     ")-[>]\?"
+
+syn match gsqlNumber   '\<\d\+\>'
+syn match gsqlNumber   '\<[-+]\d\+\>'
+
+" Floating point number with decimal no E or e (+,-)
+syn match gsqlNumber   '\<\d\+\.\d*\>'
+syn match gsqlNumber   '\<[-+]\d\+\.\d*\>'
+
+" Floating point like number with E and no decimal point (+,-)
+syn match gsqlNumber   '\<[-+]\=\d[[:digit:]]*[eE][\-+]\=\d\+\>'
+syn match gsqlNumber   '\<\d[[:digit:]]*[eE][\-+]\=\d\+\>'
+
+" Floating point like number with E and decimal point (+,-)
+syn match gsqlNumber   '\<[-+]\=\d[[:digit:]]*\.\d*[eE][\-+]\=\d\+\>'
+syn match gsqlNumber   '\<\d[[:digit:]]*\.\d*[eE][\-+]\=\d\+\>'
+
+
+syn region gsqlComment start="/\*" end="\*/" contains=gsqlTodo
+syn region cString     start=+L\="+ skip=+\\"+ end=+"+ contains=cSpecialChar
+
+syn match cSpecialChar contained '\\[ntbf"\\]'
+
+
+let b:current_syntax = "gsql"
+
+hi def link gsqlTodo             Todo
+hi def link gsqlKeywords         Keyword
+hi def link gsqlType             Type
+hi def link basicType            Type
+hi def link gsqlComment          Comment
+hi def link cString              String
+hi def link gsqlOperator         Operator
+hi def link gsqlEdge             Operator
+hi def link gsqlNumber           Constant
+hi def link cSpecialChar         Special
+
+
+"hi def link gsqlBlockCmd         Statement
+"hi def link gsqlHip              Type
+"hi def link gsqlDesc             PreProc
