@@ -1,0 +1,11 @@
+{
+    "languageServerHaskell": {
+        "hlintOn": true,
+        "maxNumberOfProblems": 100,
+        "diagnosticsDebounceDuration" : 5,
+        "liquidOn"                    : false,
+        "completionSnippetsOn"        : true,
+        "formatOnImportOn"            : true,
+        "formattingProvider"          : "brittany"
+    }
+}
