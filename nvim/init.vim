@@ -5,6 +5,7 @@ set shiftwidth=2
 set tabstop=2
 set autoindent
 set smartindent
+filetype on
 filetype plugin indent on
 set colorcolumn=80
 set mouse=a
@@ -45,6 +46,7 @@ augroup END
 
 au BufRead,BufNewFile,BufReadPre *.jade setf pug
 au BufRead,BufNewFile,BufReadPre *.gsql setf gsql
+au BufRead,BufNewFile,BufReadPre *.csv setf csv
 au TermOpen * setlocal nonumber norelativenumber
 
 let s:dein_dir = expand(g:cache_home . '/dein')
@@ -57,8 +59,12 @@ execute 'set runtimepath^=' . s:dein_repo_dir
 
 call s:source_rc('/dein.rc.vim')
 
-colorscheme zenburn
+syntax on
+set termguicolors
+colorscheme gruvbox
+set background=dark
 
+highlight! Normal ctermbg=NONE guibg=NONE
 " keymap for dvoraker
 noremap t j
 noremap n k
@@ -88,3 +94,6 @@ set list
 " 画面の右側に文字があるとき: »
 " 画面の左側に文字があるとき: «
 set listchars=tab:»-,trail:･,nbsp:⍽,extends:»,precedes:«
+
+set diffopt=vertical
+
