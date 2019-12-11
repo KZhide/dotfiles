@@ -8,6 +8,7 @@ export PATH=$PATH:`npm bin -g`
 export PATH=$HOME/.rbenv/bin:$PATH
 if which rbenv > /dev/null ; then eval "$(rbenv init -)"; fi
 export PATH=$HOME/.gem/bin:$PATH
+export PATH=$HOME/go/bin:$PATH
 
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
 export NVIM_PYTHON_LOG_FILE=/tmp/log
@@ -24,7 +25,7 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 
-fpath=($fpath /usr/local/Cellar/zsh/5.4.1_2/share/zsh/functions)
+fpath=($fpath /usr/local/Cellar/zsh/5.7.1/share/zsh/functions)
 
 # completion
 autoload -U compinit; compinit
@@ -87,3 +88,5 @@ if ! zplug check; then
   fi
 fi
 zplug load
+
+alias ghci='stack ghci'
