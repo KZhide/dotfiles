@@ -1,0 +1,12 @@
+" keymap for dvoraker
+noremap t j
+noremap n k
+noremap s l
+
+noremap j s
+noremap J S
+noremap k n
+noremap K N
+noremap l t
+noremap L T
+noremap T J
