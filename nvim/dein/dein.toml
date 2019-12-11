@@ -45,8 +45,8 @@ hook_add = '''
 \  }
   function! MyFugitive()
     try
-      if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-        let _ = fugitive#head()
+      if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#statusline')
+        let _ = fugitive#statusline()
         return strlen(_) ? _ : ''
       endif
     catch
@@ -68,6 +68,9 @@ repo = 'altercation/vim-colors-solarized'
 
 [[plugins]] # zenburn
 repo = 'jnurmine/Zenburn'
+
+[[plugins]]
+repo = 'morhetz/gruvbox'
 
 # Memo
 [[plugins]]
